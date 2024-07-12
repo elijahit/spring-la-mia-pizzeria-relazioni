@@ -1,10 +1,13 @@
 package it.elijah.pizzeria.model;
 
+import java.util.List;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Positive;
@@ -32,6 +35,9 @@ public class Pizza {
 	@Positive(message = "L'importo non può essere negativo.")
 	@Column(nullable = false)
 	private double prezzo;
+
+	@OneToMany(mappedBy = "pizza")
+	private List<SpecialOffers> specialOffers;
 	
 	
 	public Integer getId() {
@@ -65,4 +71,10 @@ public class Pizza {
 		this.prezzo = prezzo;
 	}
 	
+	public List<SpecialOffers> getSpecialOffers() {
+		return specialOffers;
+	}
+	public void setSpecialOffers(List<SpecialOffers> specialOffers) {
+		this.specialOffers = specialOffers;
+	}
 }

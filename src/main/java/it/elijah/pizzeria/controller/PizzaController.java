@@ -1,5 +1,6 @@
 package it.elijah.pizzeria.controller;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,8 +16,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import it.elijah.pizzeria.model.Pizza;
+import it.elijah.pizzeria.model.SpecialOffers;
 import it.elijah.pizzeria.repository.PizzaRepository;
 import jakarta.validation.Valid;
+
 
 @Controller
 @RequestMapping("/")
@@ -103,4 +106,17 @@ public class PizzaController {
 		
 		return "redirect:/";
 	}
+
+	@GetMapping("/pizza/{id}/offers")
+  public String offers(@PathVariable("id") Integer id, Model model) {
+    Pizza pizza = repository.findById(id).get();
+    SpecialOffers offers = new SpecialOffers();
+    offers.setStartDate(LocalDate.now());
+    offers.setPizza(pizza);
+
+    model.addAttribute("offers", offers);
+
+    return "offers/create";
+  }
+	
 }

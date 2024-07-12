@@ -24,6 +24,23 @@
 		<div class="d-flex justify-content-center">
 			<img class="img-fluid w-50 rounded-5" th:src="${pizza.fotoUrl}"/>
 		</div>
+		<div>
+			<h2 class="fs-3 text-center">Le offerte disponibili:</h2>
+			<div th:if="${pizza.specialOffers.isEmpty()}">
+				<p class="text-center">Nessuna offerta disponibile</p>
+			</div>
+			<div th:unless="${pizza.specialOffers.isEmpty()}">
+				<ul th:each="offers: ${pizza.specialOffers}" class="list-unstyled">
+					<div class="d-flex justify-content-center align-items-center gap-2">
+						<li th:text="|${offers.title} dal giorno ${offers.startDate} al giorno ${offers.endDate}|" class="text-center"></li>
+						<a class="btn btn-primary" th:href="@{|/offers/${offers.id}/edit|}">Modifica</a>
+					</div>
+				</ul>
+			</div>
+			<div class="d-flex justify-content-center">
+				<a class="btn btn-primary" th:href="@{|/pizza/${pizza.id}/offers|}">Crea nuova offerta</a>
+			</div>
+		</div>
 	</div>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
 			integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
