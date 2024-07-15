@@ -12,8 +12,8 @@ import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
 
 @Entity
-@Table(name = "ingredients")
-public class Ingredients {
+@Table(name = "ingredient")
+public class Ingredient {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,7 +23,7 @@ public class Ingredients {
   @Column(nullable = false)
   private String ingredient;
 
-  @ManyToMany(mappedBy = "ingredients_fk")
+  @ManyToMany(mappedBy = "ingredients")
   private List<Pizza> pizze;
 
   public Integer getId() {
