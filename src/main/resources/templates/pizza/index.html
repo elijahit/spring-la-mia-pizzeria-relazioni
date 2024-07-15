@@ -21,6 +21,9 @@
 	<div class="container">
 		<h1 class="text-center fs-3 mt-5" th:text="${pizza.nome} + ' | € ' + ${#numbers.formatDecimal(pizza.prezzo, 1, 2, 'COMMA')}" ></h1>
 		<p class="text-center fs-5" th:text="${pizza.descrizione}"></p>
+		<p class="text-center">
+			<span th:each="ingrediente, i: ${pizza.ingredients}" th:text="!${i.last} ? ${ingrediente.ingredient} + ', ': ${ingrediente.ingredient}"></span>
+		</p>
 		<div class="d-flex justify-content-center">
 			<img class="img-fluid w-50 rounded-5" th:src="${pizza.fotoUrl}"/>
 		</div>

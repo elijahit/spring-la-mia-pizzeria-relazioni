@@ -51,6 +51,12 @@ public class Pizza {
 	private List<Ingredient> ingredients;
 	
 	
+	public List<Ingredient> getIngredients() {
+		return ingredients;
+	}
+	public void setIngredients(List<Ingredient> ingredients) {
+		this.ingredients = ingredients;
+	}
 	public Integer getId() {
 		return id;
 	}

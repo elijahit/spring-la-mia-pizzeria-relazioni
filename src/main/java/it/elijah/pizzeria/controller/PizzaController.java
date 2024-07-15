@@ -15,8 +15,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+
 import it.elijah.pizzeria.model.Pizza;
 import it.elijah.pizzeria.model.SpecialOffers;
+import it.elijah.pizzeria.repository.IngredientRepository;
 import it.elijah.pizzeria.repository.PizzaRepository;
 import jakarta.validation.Valid;
 
@@ -27,6 +29,9 @@ public class PizzaController {
 
 	@Autowired
 	private PizzaRepository repository;
+
+	@Autowired
+	private IngredientRepository ingredientRepository;
 
 	@GetMapping
 	public String index(Model model, @RequestParam(name = "search", required = false) String search) {
@@ -55,6 +60,7 @@ public class PizzaController {
 	@GetMapping("/create")
 	public String createForm(Model model) {
 		model.addAttribute("pizza", new Pizza());
+		model.addAttribute("ingredients", ingredientRepository.findAll());
 
 		return "/create/index";
 
@@ -76,8 +82,8 @@ public class PizzaController {
 
 	@GetMapping("/edit/{id}")
 	public String edit(@PathVariable("id") Integer pizzaId, Model model) {
-
 		model.addAttribute("pizza", repository.getReferenceById(pizzaId));
+		model.addAttribute("ingredients", ingredientRepository.findAll());
 
 		return "/edit/index";
 	}

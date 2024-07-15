@@ -71,6 +71,10 @@
 					th:errorClass="is-invalid">
 				<div id="emailHelp" class="form-text">Inserisci il prezzo della tua pizza, senza includere il simbolo €.
 				</div>
+				<th:block th:each="ingrediente : ${ingredients}">
+					<input type="checkbox" name="ingrediente" th:value="${ingrediente.id}" th:field="*{ingredients}" />
+					<label th:text="${ingrediente.ingredient}"></label>
+				</th:block>
 			</div>
 			<button type="submit" class="btn btn-primary">Submit</button>
 		</form>
