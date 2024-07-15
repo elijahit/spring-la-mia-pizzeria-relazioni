@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import it.elijah.pizzeria.model.Ingredient;
-import it.elijah.pizzeria.model.Pizza;
 import it.elijah.pizzeria.repository.IngredientRepository;
 import jakarta.validation.Valid;
 
