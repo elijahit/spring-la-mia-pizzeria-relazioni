@@ -19,8 +19,8 @@ public class Ingredient {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Integer Id;
 
-  @NotBlank(message = "L'ingrediente è obbligatorio")
-  @Column(nullable = false)
+  @NotBlank(message = "Ingrediente obbligatorio")
+  @Column(name="ingredient", nullable = false)
   private String ingredient;
 
   @ManyToMany(mappedBy = "ingredients")
